@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:google_keep_clone/screens/edit_note.dart';
 
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class AllNotesView extends StatefulWidget {
+
+  const AllNotesView({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<AllNotesView> createState() => _AllNotesViewState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _AllNotesViewState extends State<AllNotesView> {
   Widget getBody()
   {
 
@@ -23,9 +25,12 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(title: const Text("App bar")),
         body: getBody(),
         floatingActionButton: FloatingActionButton(
-          child: IconButton(onPressed: () => {}, 
-                            icon: const Icon(Icons.note_add)),
-          onPressed: () => {},
+          child: const Icon(Icons.note_add),
+          onPressed: () {
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => EditNoteView()));
+          },
           backgroundColor: Colors.blue,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -41,7 +46,7 @@ class _MyAppState extends State<MyApp> {
               onPressed: () => {},
               icon: const Icon(Icons.menu, color: Colors.white)),
             Padding(
-              padding: EdgeInsets.only(right: 90),
+              padding: const EdgeInsets.only(right: 90),
               child: IconButton(
                 onPressed: () => {}, 
                 icon: const Icon(Icons.abc, color: Colors.white))
