@@ -48,8 +48,9 @@ class _AllNotesViewState extends State<AllNotesView> {
         title: const TextField(
             decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Title'
-            )
+              hintText: 'Search'
+            ),
+            autofocus: false,
         ),
         actions: [
           IconButton(
@@ -78,6 +79,7 @@ class _AllNotesViewState extends State<AllNotesView> {
     return FloatingActionButton(
           child:  Icon(Icons.note_add, color: Theme.of(context).colorScheme.onPrimary),
           onPressed: () {
+            FocusManager.instance.primaryFocus?.unfocus();
             Navigator.push(
               context, 
               MaterialPageRoute(builder: (context) => EditNoteView()));
