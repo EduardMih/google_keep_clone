@@ -31,7 +31,7 @@ class _AllNotesViewState extends State<AllNotesView> {
       
         appBar: PreferredSize(
           child: custom(),
-          preferredSize: Size.fromHeight(80),
+          preferredSize: Size.fromHeight(120),
         ),
         body: Text("asd"),
         floatingActionButton: _getFloatingActionButton(),
@@ -136,7 +136,8 @@ class _AllNotesViewState extends State<AllNotesView> {
   Widget custom()
   {
 
-    return Center(
+    return 
+    Center(
         child: Container(
     //padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
     margin: const EdgeInsets.all(30),
@@ -185,6 +186,7 @@ class _AllNotesViewState extends State<AllNotesView> {
     )
     ),
   );
+    
 
   }
 
