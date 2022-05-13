@@ -38,7 +38,6 @@ class _AllNotesViewState extends State<AllNotesView> {
   AppBar _getAppBar()
   {
 
-    
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.primary,
       leading: IconButton(
