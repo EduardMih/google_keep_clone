@@ -19,7 +19,7 @@ class _EditNoteViewState extends State<EditNoteView> {
     return Scaffold(
       appBar: _getAppBar(),
       body: _getBody(),
-      bottomNavigationBar: _getBottomNavigationBar(),
+      bottomNavigationBar: _getBottomNavigationBar(context),
       
     );
 
@@ -56,7 +56,7 @@ class _EditNoteViewState extends State<EditNoteView> {
 
   }
 
-  BottomAppBar _getBottomNavigationBar()
+  BottomAppBar _getBottomNavigationBar(BuildContext context)
   {
     
     return BottomAppBar(
@@ -79,7 +79,12 @@ class _EditNoteViewState extends State<EditNoteView> {
           ),
           Text("Edited 12:00"),
           IconButton(
-            onPressed: () => {}, 
+            onPressed: () => {
+              showModalBottomSheet(
+                context: context, 
+                builder: _getBottomModalMenu
+              )
+            }, 
             icon: const Icon(Icons.more_vert)
           )
         ],
@@ -102,12 +107,53 @@ class _EditNoteViewState extends State<EditNoteView> {
           icon: const Icon(Icons.pin_drop_outlined)),
         IconButton(
           onPressed: () => {}, 
-          icon: const Icon(Icons.add_alarm)),
+          icon: const Icon(Icons.add_alert_outlined)),
         IconButton(
           onPressed: () => {}, 
           icon: const Icon(Icons.archive_outlined))
       ],
     );
+
+  }
+
+  Widget _getBottomModalMenu(BuildContext context)
+  {
+
+    return Container(
+                    color: Colors.green,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextButton.icon(
+                          onPressed: () => {}, 
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
+                        ),
+                        TextButton.icon(
+                          onPressed: () => {}, 
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
+                        ),
+                        TextButton.icon(
+                          onPressed: () => {}, 
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
+                        ),
+                        TextButton.icon(
+                          onPressed: () => {}, 
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
+                        ),
+                        TextButton.icon(
+                          onPressed: () => {}, 
+                          icon: const Icon(Icons.delete),
+                          label: const Text('Delete'),
+                        )
+                      ])
+                  );
+
 
   }
 
