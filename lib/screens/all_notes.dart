@@ -16,10 +16,12 @@ class _AllNotesViewState extends State<AllNotesView> {
   Widget getBody()
   {
 
-    return Container(
+    return custom();
+    /*
+    Container(
       color: Theme.of(context).colorScheme.background,
       child: Center(child: const Text("Main Content")),
-       );
+       );*/
 
   }
   @override
@@ -27,8 +29,11 @@ class _AllNotesViewState extends State<AllNotesView> {
 
     return Scaffold(
       
-        appBar: _getAppBar(),
-        body: getBody(),
+        appBar: PreferredSize(
+          child: custom(),
+          preferredSize: Size.fromHeight(80),
+        ),
+        body: Text("asd"),
         floatingActionButton: _getFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: _getBottomAppBar(),
@@ -40,6 +45,7 @@ class _AllNotesViewState extends State<AllNotesView> {
 
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.primary,
+      
       leading: IconButton(
         onPressed: () => {},
         icon: Icon(Icons.menu_outlined),
@@ -124,6 +130,61 @@ class _AllNotesViewState extends State<AllNotesView> {
               )
           ]),
         );
+
+  }
+
+  Widget custom()
+  {
+
+    return Center(
+        child: Container(
+    //padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
+    margin: const EdgeInsets.all(30),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(25),
+      border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
+      color: Theme.of(context).colorScheme.primary
+      
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        IconButton(
+          onPressed: () => {}, 
+          icon: const Icon(Icons.menu)
+        ),
+        const SizedBox(
+          width: 100,
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Search'
+            ),
+            autofocus: false,
+          )
+        ), 
+
+        Row(children: [       
+         IconButton(
+            onPressed: () {
+              setState(() {
+                _listView = !_listView;
+              });
+            }, 
+            icon: Icon(_listView ? Icons.view_list : Icons.grid_view)),
+          IconButton(
+            onPressed: () {
+              
+            }, 
+            icon: const Icon(Icons.mode)
+          )
+      ],
+      mainAxisAlignment: MainAxisAlignment.end,
+      )
+      ],
+    )
+    ),
+  );
 
   }
 
