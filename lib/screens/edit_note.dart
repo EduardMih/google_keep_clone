@@ -120,39 +120,60 @@ class _EditNoteViewState extends State<EditNoteView> {
   {
 
     return Container(
-                    color: Colors.green,
+                    color: Colors.white,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      
                       children: [
                         TextButton.icon(
+                           style: TextButton.styleFrom(
+                            minimumSize: const Size.fromHeight(20),
+                            alignment: Alignment.centerLeft
+                          ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.delete),
+                          icon: const Icon(Icons.delete_outline),
                           label: const Text('Delete'),
                         ),
                         TextButton.icon(
+                          style: TextButton.styleFrom(
+                            minimumSize: const Size.fromHeight(20),
+                            alignment: Alignment.centerLeft
+                          ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.delete),
-                          label: const Text('Delete'),
+                          icon: const Icon(Icons.copy_outlined),
+                          label: const Text('Make a copy'),
                         ),
                         TextButton.icon(
+                           style: TextButton.styleFrom(
+                            minimumSize: const Size.fromHeight(20),
+                            alignment: Alignment.centerLeft
+                          ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.delete),
-                          label: const Text('Delete'),
+                          icon: const Icon(Icons.share_outlined),
+                          label: const Text('Send'),
                         ),
                         TextButton.icon(
+                           style: TextButton.styleFrom(
+                            minimumSize: const Size.fromHeight(20),
+                            alignment: Alignment.centerLeft
+                          ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.delete),
-                          label: const Text('Delete'),
+                          icon: const Icon(Icons.person_add_outlined),
+                          label: const Text('Add collaborator'),
                         ),
                         TextButton.icon(
+                           style: TextButton.styleFrom(
+                            minimumSize: const Size.fromHeight(20),
+                            alignment: Alignment.centerLeft
+                          ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.delete),
-                          label: const Text('Delete'),
+                          icon: const Icon(Icons.label_outline),
+                          label: const Text('Labels'),
                         )
                       ])
-                  );
+    );
 
 
   }

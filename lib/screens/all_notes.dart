@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_keep_clone/screens/edit_note.dart';
 
-const iconColor = Color(0xFF5F6368);
 
 class AllNotesView extends StatefulWidget {
 
@@ -15,14 +14,17 @@ class _AllNotesViewState extends State<AllNotesView> {
   Widget getBody()
   {
 
-    return Center(child: const Text("Main Content"));
+    return Container(
+      color: Theme.of(context).colorScheme.background,
+      child: Center(child: const Text("Main Content")),
+       );
 
   }
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-        appBar: AppBar(title: const Text("App bar"), ),
+        appBar: AppBar(title: const Text("App bar"), elevation: 0),
         body: getBody(),
         floatingActionButton: _getFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
@@ -34,13 +36,17 @@ class _AllNotesViewState extends State<AllNotesView> {
   {
 
     return FloatingActionButton(
-          child: const Icon(Icons.note_add),
+          child:  Icon(Icons.note_add, color: Theme.of(context).colorScheme.onPrimary),
           onPressed: () {
             Navigator.push(
               context, 
               MaterialPageRoute(builder: (context) => EditNoteView()));
           },
           backgroundColor: Theme.of(context).colorScheme.primary,
+          splashColor: Theme.of(context).colorScheme.primary,
+          focusColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Theme.of(context).colorScheme.primary,
+          hoverColor: Theme.of(context).colorScheme.primary,
     );
 
   }
@@ -49,7 +55,7 @@ class _AllNotesViewState extends State<AllNotesView> {
   {
 
     return BottomAppBar(
-          color: Theme.of(context).colorScheme.onSecondary,
+          color: Theme.of(context).colorScheme.primary,
           shape: const CircularNotchedRectangle(),
           notchMargin: 5,
           child: Row(
@@ -58,21 +64,21 @@ class _AllNotesViewState extends State<AllNotesView> {
             children: <Widget>[
             IconButton(
               onPressed: () => {}, 
-              icon: const Icon(Icons.check_box, color: iconColor)
+              icon: Icon(Icons.check_box_outlined, color: Theme.of(context).colorScheme.onPrimary)
               ),
             IconButton(
               onPressed: () => {}, 
-              icon: const Icon(Icons.brush_sharp, color: iconColor)
+              icon: Icon(Icons.brush_outlined, color: Theme.of(context).colorScheme.onPrimary)
               ),
             IconButton(
               onPressed: () => {},
-              icon: const Icon(Icons.mic, color: iconColor)
+              icon: Icon(Icons.mic_outlined, color: Theme.of(context).colorScheme.onPrimary)
               ),
             Padding(
               padding: const EdgeInsets.only(right: 90),
               child: IconButton(
                 onPressed: () => {}, 
-                icon: const Icon(Icons.insert_photo, color: iconColor))
+                icon: Icon(Icons.insert_photo_outlined, color: Theme.of(context).colorScheme.onPrimary))
               )
           ]),
         );
