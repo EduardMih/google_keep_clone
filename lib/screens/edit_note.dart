@@ -17,9 +17,7 @@ class _EditNoteViewState extends State<EditNoteView> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Edit Note"),
-      ),
+      appBar: _getAppBar(),
       body: _getBody(),
       bottomNavigationBar: _getBottomNavigationBar(),
       
@@ -50,7 +48,6 @@ class _EditNoteViewState extends State<EditNoteView> {
             ),
             controller: _contentTextController,
             maxLines: null,
-            maxLength: 5000,
             textCapitalization: TextCapitalization.sentences,
           )
         ],
@@ -72,11 +69,11 @@ class _EditNoteViewState extends State<EditNoteView> {
             children:  <Widget>[
                 IconButton(
                   onPressed: () => {}, 
-                  icon: const Icon(Icons.add_box)
+                  icon: const Icon(Icons.add_box_outlined)
                 ),
                 IconButton(
                   onPressed: () => {}, 
-                  icon: const Icon(Icons.palette)
+                  icon: const Icon(Icons.palette_outlined)
                 )
             ]
           ),
@@ -87,6 +84,29 @@ class _EditNoteViewState extends State<EditNoteView> {
           )
         ],
       ),
+    );
+
+  }
+
+  AppBar _getAppBar()
+  {
+
+    return AppBar(
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.grey,
+      leading: const BackButton(color: Colors.black),
+      elevation: 0.0,
+      actions: [
+        IconButton(
+          onPressed: () => {}, 
+          icon: const Icon(Icons.pin_drop_outlined)),
+        IconButton(
+          onPressed: () => {}, 
+          icon: const Icon(Icons.add_alarm)),
+        IconButton(
+          onPressed: () => {}, 
+          icon: const Icon(Icons.archive_outlined))
+      ],
     );
 
   }
