@@ -34,9 +34,14 @@ class _AllNotesViewState extends State<AllNotesView> {
           notes.add(box.getAt(i));
         }
 
-        return CardList(
+        return _listView ? CardList(
           noteCount: box.length, 
-          notes: notes);
+          notes: notes
+          ) :
+          CardGrid(
+          noteCount: box.length, 
+          notes: notes
+          );
 
       }
     );

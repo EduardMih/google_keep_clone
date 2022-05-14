@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_keep_clone/models/note_model.dart';
 import 'package:google_keep_clone/screens/edit_note.dart';
 
 
 class CardGrid extends StatefulWidget {
-  CardGrid({Key? key}) : super(key: key);
+  final int noteCount;
+  List<Note> notes;
+
+  CardGrid({Key? key, required this.noteCount, required this.notes}) : super(key: key);
 
   @override
   State<CardGrid> createState() => _CardGridState();
@@ -21,7 +25,7 @@ class _CardGridState extends State<CardGrid> {
         crossAxisSpacing: 16,
         mainAxisSpacing: 16
       ),
-      itemCount: 15, 
+      itemCount: widget.noteCount, 
       itemBuilder: (BuildContext context, int index) {
           
           return Card(
@@ -41,12 +45,12 @@ class _CardGridState extends State<CardGrid> {
               },
               title: Padding(
                 padding: const EdgeInsets.all(7),
-                child: Text("Title $index"),
+                child: Text(widget.notes[index].title),
               ),
               
               subtitle: Padding(
                 padding: EdgeInsets.only(left: 7, right: 7, bottom: 7),
-                child: const Text("sdlfnskgnkjsndklfnlskangkndgnjdfngjnmsngm dsfslknkm sdfnks sdfskm sdfnskf")
+                child: Text(widget.notes[index].content)
               ),
           ))
           ;
