@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+
+
 class Note
 {
   int? id;
@@ -9,7 +11,7 @@ class Note
   final DateTime createdAt;
   DateTime modifiedAt;
 
-  Note.fromDbData(this.id, this.title, this.connent, this.color, DateTime createdAt, DateTime modifiedAt):
+  Note.fromDbData(this.id, this.title, this.connent, this.color, DateTime? createdAt, DateTime? modifiedAt):
   createdAt = createdAt ?? DateTime.now(),
   modifiedAt = modifiedAt ?? DateTime.now();
 

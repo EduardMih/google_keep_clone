@@ -13,10 +13,15 @@ class _CardGridState extends State<CardGrid> {
   @override
   Widget build(BuildContext context) {
 
+    return LayoutBuilder(builder: (context, constraints) {
+
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2
-      ), 
+        crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16
+      ),
+      itemCount: 15, 
       itemBuilder: (BuildContext context, int index) {
           
           return Card(
@@ -35,7 +40,7 @@ class _CardGridState extends State<CardGrid> {
                 print("$index");
               },
               title: Padding(
-                padding: EdgeInsets.all(7),
+                padding: const EdgeInsets.all(7),
                 child: Text("Title $index"),
               ),
               
@@ -48,5 +53,6 @@ class _CardGridState extends State<CardGrid> {
         },
     );
   
+  });
   }
 }
