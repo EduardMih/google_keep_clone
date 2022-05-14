@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_keep_clone/screens/edit_note.dart';
+import 'components/grid_view.dart';
 import 'components/list_view.dart';
 
 
@@ -19,7 +20,7 @@ class _AllNotesViewState extends State<AllNotesView> {
   Widget _getBody()
   {
 
-    return CardList();
+    return CardGrid();
 
   }
   @override
