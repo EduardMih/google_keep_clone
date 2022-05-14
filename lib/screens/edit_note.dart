@@ -93,13 +93,15 @@ class _EditNoteViewState extends State<EditNoteView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextField(
+            cursorColor: Theme.of(context).colorScheme.onPrimary,
             decoration: const InputDecoration(
-              border: OutlineInputBorder(),
+              border: InputBorder.none,
               hintText: 'Title'
             ),
             controller: _titleTextController,
           ),
           TextField(
+            cursorColor: Theme.of(context).colorScheme.onPrimary,
             decoration: const InputDecoration(
               border: InputBorder.none,
               hintText: 'Content'
@@ -135,7 +137,7 @@ class _EditNoteViewState extends State<EditNoteView> {
                 )
             ]
           ),
-          Text("Edited 12:00"),
+          Text(widget.previousnote != null ? "Edited ${_getModifiedDateFormated(widget.previousnote!.modifiedAt)}" : "New note"),
           IconButton(
             onPressed: () => {
               showModalBottomSheet(
@@ -209,8 +211,8 @@ class _EditNoteViewState extends State<EditNoteView> {
                             alignment: Alignment.centerLeft
                           ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.copy_outlined),
-                          label: const Text('Make a copy'),
+                          icon: Icon(Icons.copy_outlined, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text('Make a copy', style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                         ),
                         TextButton.icon(
                            style: TextButton.styleFrom(
@@ -218,8 +220,8 @@ class _EditNoteViewState extends State<EditNoteView> {
                             alignment: Alignment.centerLeft
                           ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.share_outlined),
-                          label: const Text('Send'),
+                          icon: Icon(Icons.share_outlined, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text('Send', style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                         ),
                         TextButton.icon(
                            style: TextButton.styleFrom(
@@ -227,8 +229,8 @@ class _EditNoteViewState extends State<EditNoteView> {
                             alignment: Alignment.centerLeft
                           ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.person_add_outlined),
-                          label: const Text('Add collaborator'),
+                          icon: Icon(Icons.person_add_outlined, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text('Add collaborator', style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                         ),
                         TextButton.icon(
                            style: TextButton.styleFrom(
@@ -236,12 +238,19 @@ class _EditNoteViewState extends State<EditNoteView> {
                             alignment: Alignment.centerLeft
                           ),
                           onPressed: () => {}, 
-                          icon: const Icon(Icons.label_outline),
-                          label: const Text('Labels'),
+                          icon: Icon(Icons.label_outline, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text('Labels', style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                         )
                       ])
     );
 
+
+  }
+
+  String _getModifiedDateFormated(DateTime datetime)
+  {
+    
+    return "${datetime.year}-${datetime.month}-${datetime.day} ${datetime.hour}:${datetime.minute}";
 
   }
 

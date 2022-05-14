@@ -29,7 +29,6 @@ class _CardGridState extends State<CardGrid> {
       itemBuilder: (BuildContext context, int index) {
           
           return Card(
-            
             elevation: 0,
             color: Theme.of(context).colorScheme.primary,
             shape: RoundedRectangleBorder(
@@ -42,6 +41,9 @@ class _CardGridState extends State<CardGrid> {
             child: ListTile(
               onTap: () {
                 print("$index");
+                Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => EditNoteView(index: index, previousnote: widget.notes[index])));
               },
               title: Padding(
                 padding: const EdgeInsets.all(7),
