@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_keep_clone/models/note_model.dart';
 import 'package:google_keep_clone/screens/edit_note.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'components/grid_view.dart';
 import 'components/list_view.dart';
-
-
 
 
 class AllNotesView extends StatefulWidget {
@@ -16,12 +17,36 @@ class AllNotesView extends StatefulWidget {
 
 class _AllNotesViewState extends State<AllNotesView> {
   bool _listView = true;
+  late final Box box;
 
   Widget _getBody()
   {
+    List<Note> notes = List.empty(growable: true);
 
-    return CardGrid();
+    return ValueListenableBuilder(
+      valueListenable: box.listenable(), 
+      builder: (context, Box box, widget) {
 
+        notes.clear();
+
+        for(int i = 0; i < box.length; i++)
+        {
+          notes.add(box.getAt(i));
+        }
+
+        return CardList(
+          noteCount: box.length, 
+          notes: notes);
+
+      }
+    );
+
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    box = Hive.box('noteBox');
   }
   @override
   Widget build(BuildContext context) {

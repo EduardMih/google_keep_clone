@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import '../models/note_model.dart';
 
 class EditNoteView extends StatefulWidget {
@@ -10,8 +11,12 @@ class EditNoteView extends StatefulWidget {
 }
 
 class _EditNoteViewState extends State<EditNoteView> {
+  Note? previousNote;
+  Note? currentNote;
+
   final _titleTextController = TextEditingController();
   final _contentTextController = TextEditingController();
+  late final Box box;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,30 @@ class _EditNoteViewState extends State<EditNoteView> {
     );
 
   }
+
+  @override
+  void initState() {
+    super.initState();
+
+    box = Hive.box('noteBox');
+    
+  }
+
+  void _saveNote()
+  {
+    currentNote = Note.fromInputData(
+      _titleTextController.text, 
+      _contentTextController.text, 
+      Colors.red.value);
+
+      box.add(currentNote);
+
+      print("Note saved!");
+
+  }
+
+
+
 
   Widget _getBody()
   {
@@ -182,6 +211,8 @@ class _EditNoteViewState extends State<EditNoteView> {
   void dispose() {
     _titleTextController.dispose();
     _contentTextController.dispose();
+    _saveNote();
+    //Hive.close();
     super.dispose();
   }
 }

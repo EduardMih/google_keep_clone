@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_keep_clone/models/note_model.dart';
 import 'package:google_keep_clone/screens/edit_note.dart';
+import 'package:hive/hive.dart';
 
 
 class CardList extends StatefulWidget {
-  CardList({Key? key}) : super(key: key);
+  final int noteCount;
+  List<Note> notes;
+
+  CardList({Key? key, required this.noteCount, required this.notes}) : super(key: key);
 
   @override
   State<CardList> createState() => _CardListState();
@@ -15,7 +20,7 @@ class _CardListState extends State<CardList> {
     
     return ListView.builder(
       padding: const EdgeInsets.all(8),
-        itemCount: 10,
+        itemCount: widget.noteCount,
         itemBuilder: (BuildContext context, int index) {
           
           return Card(
@@ -34,13 +39,13 @@ class _CardListState extends State<CardList> {
                 print("$index");
               },
               title: Padding(
-                padding: EdgeInsets.all(7),
-                child: Text("Title $index"),
+                padding: const EdgeInsets.all(7),
+                child: Text(widget.notes[index].title),
               ),
               
               subtitle: Padding(
-                padding: EdgeInsets.only(left: 7, right: 7, bottom: 7),
-                child: const Text("sdlfnskgnkjsndklfnlskangkndgnjdfngjnmsngm dsfslknkm sdfnks sdfskm sdfnskf")
+                padding: const EdgeInsets.only(left: 7, right: 7, bottom: 7),
+                child: Text(widget.notes[index].content)
               ),
           ))
           ;
