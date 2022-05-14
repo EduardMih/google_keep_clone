@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/all_notes.dart';
+import 'screens/all_notes/all_notes.dart';
 
 const color = Color(0xFF5F6368);
 void main() {

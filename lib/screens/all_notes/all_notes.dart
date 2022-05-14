@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_keep_clone/screens/edit_note.dart';
+import 'components/list_view.dart';
+
+
 
 
 class AllNotesView extends StatefulWidget {
@@ -13,15 +16,10 @@ class AllNotesView extends StatefulWidget {
 class _AllNotesViewState extends State<AllNotesView> {
   bool _listView = true;
 
-  Widget getBody()
+  Widget _getBody()
   {
 
-    return custom();
-    /*
-    Container(
-      color: Theme.of(context).colorScheme.background,
-      child: Center(child: const Text("Main Content")),
-       );*/
+    return CardList();
 
   }
   @override
@@ -33,7 +31,7 @@ class _AllNotesViewState extends State<AllNotesView> {
           child: custom(),
           preferredSize: Size.fromHeight(120),
         ),
-        body: Text("asd"),
+        body: _getBody(),
         floatingActionButton: _getFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: _getBottomAppBar(),
@@ -82,7 +80,7 @@ class _AllNotesViewState extends State<AllNotesView> {
   FloatingActionButton _getFloatingActionButton()
   {
     return FloatingActionButton(
-          child:  Icon(Icons.note_add, color: Theme.of(context).colorScheme.onPrimary),
+          child:  Icon(Icons.add, color: Theme.of(context).colorScheme.onPrimary),
           onPressed: () {
             FocusManager.instance.primaryFocus?.unfocus();
             Navigator.push(
@@ -192,3 +190,4 @@ class _AllNotesViewState extends State<AllNotesView> {
 
 
 }
+
