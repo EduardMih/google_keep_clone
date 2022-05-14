@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 part 'note_model.g.dart';
 
 @HiveType(typeId: 1)
-class Note
+class Note extends HiveObject
 {
   @HiveField(0)
   int? id;
@@ -27,13 +27,19 @@ class Note
 
   Note(this.id, this.title, this.content, this.color, this.createdAt, this.modifiedAt);
 
-  Note.fromDbData(this.id, this.title, this.content, this.color, DateTime? createdAt, DateTime? modifiedAt):
-  createdAt = createdAt ?? DateTime.now(),
-  modifiedAt = modifiedAt ?? DateTime.now();
-
   Note.fromInputData(this.title, this.content, this.color): 
   createdAt = DateTime.now(),
   modifiedAt = DateTime.now();
 
-  
+  Note updateExistingNote({String? title, String? content, int? color, DateTime? modifiedAt})
+  {
+
+    this.title = title ?? this.title;
+    this.content = content ?? this.content;
+    this.color = color ?? this.color;
+    this.modifiedAt = modifiedAt ?? DateTime.now();
+
+    return this;
+
+  }
 }

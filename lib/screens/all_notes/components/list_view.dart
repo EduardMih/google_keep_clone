@@ -37,6 +37,9 @@ class _CardListState extends State<CardList> {
             child: ListTile(
               onTap: () {
                 print("$index");
+                Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => EditNoteView(index: index, previousnote: widget.notes[index])));
               },
               title: Padding(
                 padding: const EdgeInsets.all(7),

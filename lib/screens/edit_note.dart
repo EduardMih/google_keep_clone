@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:google_keep_clone/screens/all_notes/all_notes.dart';
 import 'package:hive/hive.dart';
 import '../models/note_model.dart';
 
 class EditNoteView extends StatefulWidget {
+  final int? index;
+  final Note? previousnote;
+  Note? currentNote;
 
-  EditNoteView({Key? key}) : super(key: key);
+  EditNoteView({Key? key, this.index, this.previousnote}) : super(key: key);
 
   @override
   State<EditNoteView> createState() => _EditNoteViewState();
 }
 
 class _EditNoteViewState extends State<EditNoteView> {
-  Note? previousNote;
-  Note? currentNote;
 
-  final _titleTextController = TextEditingController();
-  final _contentTextController = TextEditingController();
+  late final TextEditingController _titleTextController;
+  late final TextEditingController _contentTextController;
   late final Box box;
 
   @override
@@ -35,19 +37,46 @@ class _EditNoteViewState extends State<EditNoteView> {
     super.initState();
 
     box = Hive.box('noteBox');
+
+    _titleTextController = TextEditingController(
+      text: widget.index == null ? "" : widget.previousnote?.title);
+
+    _contentTextController = TextEditingController(
+      text: widget.index == null ? "" : widget.previousnote?.content
+    );
     
   }
 
   void _saveNote()
   {
-    currentNote = Note.fromInputData(
-      _titleTextController.text, 
-      _contentTextController.text, 
-      Colors.red.value);
+    if(widget.previousnote == null)
+    {
+      if((_titleTextController.text != "") || (_contentTextController.text != ""))
+      {
+        widget.currentNote = Note.fromInputData(
+          _titleTextController.text, 
+          _contentTextController.text, 
+         Colors.red.value);
 
-      box.add(currentNote);
+         box.add(widget.currentNote);
 
-      print("Note saved!");
+         print("New note added");
+      }
+    }
+
+    else
+
+    {
+      widget.currentNote = widget.previousnote?.updateExistingNote(
+        title: _titleTextController.text,
+        content:  _contentTextController.text,
+      );
+
+      widget.currentNote?.save();
+
+      print("Note updated");
+
+    }
 
   }
 
@@ -161,9 +190,18 @@ class _EditNoteViewState extends State<EditNoteView> {
                             minimumSize: const Size.fromHeight(20),
                             alignment: Alignment.centerLeft
                           ),
-                          onPressed: () => {}, 
-                          icon: const Icon(Icons.delete_outline),
-                          label: const Text('Delete'),
+                          onPressed: () {
+                            if(widget.index != null)
+                            {
+                              box.deleteAt(widget.index!);
+                              Navigator.push(
+                                context, 
+                                MaterialPageRoute(builder: (context) => const AllNotesView()));
+
+                            }
+                          }, 
+                          icon: Icon(Icons.delete_outline, color: Theme.of(context).colorScheme.onPrimary),
+                          label: Text('Delete', style: TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
                         ),
                         TextButton.icon(
                           style: TextButton.styleFrom(
