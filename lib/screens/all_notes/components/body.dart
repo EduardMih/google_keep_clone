@@ -32,3 +32,4 @@ Widget getBody(Box box, bool listView)
     );
 
   }
+  

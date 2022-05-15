@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_keep_clone/models/note_model.dart';
-import 'package:google_keep_clone/screens/edit_note.dart';
+import 'package:google_keep_clone/screens/edit_note/edit_note.dart';
 import 'package:hive/hive.dart';
 
 

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_keep_clone/models/note_model.dart';
 import 'package:google_keep_clone/screens/all_notes/all_notes.dart';
+import 'package:google_keep_clone/screens/edit_note/components/app_bar.dart';
+import 'package:google_keep_clone/screens/edit_note/components/body.dart';
+import 'package:google_keep_clone/screens/edit_note/components/bottom_modal_menu_builder.dart';
+import 'package:google_keep_clone/screens/edit_note/components/bottom_navigation_bar.dart';
 import 'package:hive/hive.dart';
-import '../models/note_model.dart';
 
 class EditNoteView extends StatefulWidget {
   final int? index;
@@ -24,9 +28,9 @@ class _EditNoteViewState extends State<EditNoteView> {
   Widget build(BuildContext context) {
     
     return Scaffold(
-      appBar: _getAppBar(),
-      body: _getBody(),
-      bottomNavigationBar: _getBottomNavigationBar(context),
+      appBar: getAppBar(context),
+      body: BodyComponent(titleTextController: _titleTextController, contentTextController: _contentTextController),
+      bottomNavigationBar: getBottomNavigationBar(context, _getModifiedDateFormated(widget.previousnote), showBottomMenu),
       
     );
 
@@ -80,9 +84,30 @@ class _EditNoteViewState extends State<EditNoteView> {
 
   }
 
+  void showBottomMenu()
+  {
+    showModalBottomSheet(
+      context: context, 
+      builder: (context) => getBottomModalMenu(context, deleteNote)
+    );
+  }
+
+  void deleteNote()
+  {
+    if(widget.index != null)
+    {
+      box.deleteAt(widget.index!);
+      Navigator.push(
+      context, 
+      MaterialPageRoute(builder: (context) => const AllNotesView()));
+    }
+
+  }
 
 
 
+
+/*
   Widget _getBody()
   {
 
@@ -115,6 +140,7 @@ class _EditNoteViewState extends State<EditNoteView> {
     );
 
   }
+  
 
   BottomAppBar _getBottomNavigationBar(BuildContext context)
   {
@@ -152,6 +178,7 @@ class _EditNoteViewState extends State<EditNoteView> {
     );
 
   }
+  
 
   AppBar _getAppBar()
   {
@@ -175,6 +202,7 @@ class _EditNoteViewState extends State<EditNoteView> {
     );
 
   }
+  
 
   Widget _getBottomModalMenu(BuildContext context)
   {
@@ -246,11 +274,18 @@ class _EditNoteViewState extends State<EditNoteView> {
 
 
   }
+  */
 
-  String _getModifiedDateFormated(DateTime datetime)
+  String _getModifiedDateFormated(Note? note)
   {
+    if(note == null)
+    {
+       
+       return "New Note";
+       
+    }
     
-    return "${datetime.year}-${datetime.month}-${datetime.day} ${datetime.hour}:${datetime.minute}";
+    return "Edited ${note.modifiedAt.year}-${note.modifiedAt.month}-${note.modifiedAt.day} ${note.modifiedAt.hour}:${note.modifiedAt.minute}";
 
   }
 
