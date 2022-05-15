@@ -15,7 +15,7 @@ class _BodyComponentState extends State<BodyComponent> {
   Widget build(BuildContext context) {
 
     return Container(
-      color: Theme.of(context).colorScheme.background,
+      //color: Theme.of(context).colorScheme.background,
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

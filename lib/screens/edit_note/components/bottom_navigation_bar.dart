@@ -5,7 +5,7 @@ BottomAppBar getBottomNavigationBar(BuildContext context, String message, Functi
     
     return BottomAppBar(
       elevation: 0.0,
-      color: Theme.of(context).colorScheme.primary,
+      color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

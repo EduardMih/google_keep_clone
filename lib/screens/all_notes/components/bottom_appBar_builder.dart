@@ -4,7 +4,7 @@ BottomAppBar getBottomAppBar(BuildContext context)
   {
 
     return BottomAppBar(
-          color: Theme.of(context).colorScheme.primary,
+          //color: Theme.of(context).colorScheme.primary,
           elevation: 0.2,
           shape: const CircularNotchedRectangle(),
           notchMargin: 5,

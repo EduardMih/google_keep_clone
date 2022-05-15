@@ -38,7 +38,7 @@ class _AllNotesViewState extends State<AllNotesView> {
         floatingActionButton: getFloatingActionButton(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: getBottomAppBar(context),
-        backgroundColor: Theme.of(context).colorScheme.background,
+        //backgroundColor: Theme.of(context).colorScheme.background,
         );
   }
 

@@ -23,12 +23,13 @@ class _TopAppBarState extends State<TopAppBar> {
   Widget build(BuildContext context) {
 
     return Center(
+      
         child: Container(
     //padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
     margin: const EdgeInsets.all(30),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(25),
-      border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
+      border: Border.all(color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.75)),
       color: Theme.of(context).colorScheme.primary
       
     ),

@@ -26,7 +26,7 @@ class _CardListState extends State<CardList> {
           return Card(
             
             elevation: 0,
-            color: Theme.of(context).colorScheme.primary,
+            //color: Theme.of(context).colorScheme.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(

@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'screens/all_notes/all_notes.dart';
 
 ThemeManager _themeManager = ThemeManager();
+//Styles styles = Styles();
 
 void main() async {
   await Hive.initFlutter();
@@ -41,11 +42,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    Styles styles = Styles();
 
     return MaterialApp(
       home: AllNotesView(themeManager: _themeManager),
-      theme: Styles.lightTheme,
-      darkTheme: Styles.darkTheme,
+      theme: styles.lightTheme,
+      darkTheme: styles.darkTheme,
       themeMode: _themeManager.themeMode
     );
 
