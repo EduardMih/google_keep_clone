@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_keep_clone/models/note_model.dart';
+import 'package:google_keep_clone/styles/styles.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'screens/all_notes/all_notes.dart';
@@ -21,22 +22,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return  MaterialApp(
-      home: AllNotesView(),
-      theme: ThemeData(
-        colorScheme: const ColorScheme(
-          brightness: Brightness.light,
-          primary: Colors.white60,
-          onPrimary: color,
-          secondary: Colors.grey,
-          onSecondary: Colors.grey,
-          background: Colors.white,
-          onBackground: Colors.grey,
-          surface: Colors.grey,
-          onSurface: Colors.grey,
-          error: Colors.grey,
-          onError: Colors.grey,
-      )
-    )
+      home: const AllNotesView(),
+      theme: Styles.lightTheme,
+      darkTheme: Styles.darkTheme,
+      themeMode: ThemeMode.dark,
     );
 
   }

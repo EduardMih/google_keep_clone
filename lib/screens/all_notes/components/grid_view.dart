@@ -22,8 +22,8 @@ class _CardGridState extends State<CardGrid> {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16
+        crossAxisSpacing: 7,
+        mainAxisSpacing: 7
       ),
       itemCount: widget.noteCount, 
       itemBuilder: (BuildContext context, int index) {
@@ -32,10 +32,10 @@ class _CardGridState extends State<CardGrid> {
             elevation: 0,
             color: Theme.of(context).colorScheme.primary,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: Theme.of(context).colorScheme.onPrimary,
-                width: 2
+                color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.75),
+                width: 1
               )
               ),
             child: ListTile(
@@ -51,7 +51,7 @@ class _CardGridState extends State<CardGrid> {
               ),
               
               subtitle: Padding(
-                padding: EdgeInsets.only(left: 7, right: 7, bottom: 7),
+                padding: const EdgeInsets.only(left: 7, right: 7, bottom: 7),
                 child: Text(widget.notes[index].content)
               ),
           ))

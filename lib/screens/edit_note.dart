@@ -87,7 +87,7 @@ class _EditNoteViewState extends State<EditNoteView> {
   {
 
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.background,
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +121,7 @@ class _EditNoteViewState extends State<EditNoteView> {
     
     return BottomAppBar(
       elevation: 0.0,
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -157,9 +157,9 @@ class _EditNoteViewState extends State<EditNoteView> {
   {
 
     return AppBar(
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.grey,
-      leading: const BackButton(color: Colors.black),
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      foregroundColor: Theme.of(context).colorScheme.secondary,
+      leading: BackButton(color: Theme.of(context).colorScheme.onPrimary),
       elevation: 0.0,
       actions: [
         IconButton(
@@ -180,7 +180,7 @@ class _EditNoteViewState extends State<EditNoteView> {
   {
 
     return Container(
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,

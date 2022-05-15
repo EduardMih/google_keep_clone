@@ -66,6 +66,7 @@ class _AllNotesViewState extends State<AllNotesView> {
         floatingActionButton: _getFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: _getBottomAppBar(),
+        backgroundColor: Colors.black26,
         );
   }
 

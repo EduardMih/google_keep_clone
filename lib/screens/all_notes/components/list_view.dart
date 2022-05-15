@@ -28,10 +28,11 @@ class _CardListState extends State<CardList> {
             elevation: 0,
             color: Theme.of(context).colorScheme.primary,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: Theme.of(context).colorScheme.onPrimary,
-                width: 2
+                color: Theme.of(context).colorScheme.onPrimary.withOpacity(0.75),
+                width: 1,
+                
               )
               ),
             child: ListTile(
