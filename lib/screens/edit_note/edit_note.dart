@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_keep_clone/models/note_model.dart';
-import 'package:google_keep_clone/screens/all_notes/all_notes.dart';
 import 'package:google_keep_clone/screens/edit_note/components/app_bar.dart';
 import 'package:google_keep_clone/screens/edit_note/components/body.dart';
 import 'package:google_keep_clone/screens/edit_note/components/bottom_modal_menu_builder.dart';
@@ -22,6 +21,7 @@ class _EditNoteViewState extends State<EditNoteView> {
 
   late final TextEditingController _titleTextController;
   late final TextEditingController _contentTextController;
+  bool shouldSave = true;
   late final Box box;
 
   @override
@@ -71,6 +71,7 @@ class _EditNoteViewState extends State<EditNoteView> {
     else
 
     {
+      
       widget.currentNote = widget.previousnote?.updateExistingNote(
         title: _titleTextController.text,
         content:  _contentTextController.text,
@@ -97,6 +98,8 @@ class _EditNoteViewState extends State<EditNoteView> {
     if(widget.index != null)
     {
       box.deleteAt(widget.index!);
+      shouldSave = false;
+
       //Navigator.push(
       //context, 
       //MaterialPageRoute(builder: (context) => const AllNotesView()));
@@ -295,7 +298,10 @@ class _EditNoteViewState extends State<EditNoteView> {
   void dispose() {
     _titleTextController.dispose();
     _contentTextController.dispose();
+    if(shouldSave)
+    {
     _saveNote();
+    }
     //Hive.close();
     super.dispose();
   }
