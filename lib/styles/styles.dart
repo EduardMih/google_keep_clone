@@ -26,8 +26,8 @@ class Styles
       primary: Colors.black, 
       onPrimary: Colors.white, 
 
-      secondary: Colors.grey, 
-      onSecondary: Colors.black,
+      secondary: Colors.black12, 
+      onSecondary: Colors.white,
 
       error: Colors.red, 
       onError: Colors.white,
