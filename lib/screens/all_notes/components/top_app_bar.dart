@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
 class TopAppBar extends StatefulWidget {
-  bool listView;
+  final bool listView;
+  final ThemeMode themeMode;
   final Function changeViewMode;
+  final Function changeTheme;
 
-  TopAppBar({Key? key, required this.changeViewMode, required this.listView}) : super(key: key);
+  TopAppBar({
+    Key? key, 
+    required this.changeViewMode, 
+    required this.listView, 
+    required this.changeTheme, 
+    required this.themeMode
+    }) : super(key: key);
 
   @override
   State<TopAppBar> createState() => _TopAppBarState();
@@ -47,10 +55,8 @@ class _TopAppBarState extends State<TopAppBar> {
             onPressed: () => widget.changeViewMode(), 
             icon: Icon(widget.listView ? Icons.view_list : Icons.grid_view)),
           IconButton(
-            onPressed: () {
-              
-            }, 
-            icon: const Icon(Icons.mode)
+            onPressed: () => widget.changeTheme(), 
+            icon: Icon(widget.themeMode == ThemeMode.light ? Icons.light_mode_outlined : Icons.dark_mode_outlined)
           )
       ],
       mainAxisAlignment: MainAxisAlignment.end,

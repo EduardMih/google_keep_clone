@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_keep_clone/screens/all_notes/components/body.dart';
 import 'package:google_keep_clone/screens/all_notes/components/bottom_appBar_builder.dart';
 import 'package:google_keep_clone/screens/all_notes/components/floating_action_button_builder.dart';
-import 'package:google_keep_clone/screens/all_notes/components/topAppBar.dart';
+import 'package:google_keep_clone/screens/all_notes/components/top_app_bar.dart';
+import 'package:google_keep_clone/styles/theme_manager.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 
 class AllNotesView extends StatefulWidget {
-  const AllNotesView({Key? key}) : super(key: key);
+  final ThemeManager themeManager;
+  const AllNotesView({Key? key, required this.themeManager}) : super(key: key);
 
   @override
   State<AllNotesView> createState() => _AllNotesViewState();
@@ -29,14 +31,14 @@ class _AllNotesViewState extends State<AllNotesView> {
     return Scaffold(
       
         appBar: PreferredSize(
-          child: TopAppBar(changeViewMode: changeViewMode, listView: _listView,),
+          child: TopAppBar(changeViewMode: changeViewMode, listView: _listView, changeTheme: changeTheme, themeMode: widget.themeManager.themeMode),
           preferredSize: const Size.fromHeight(120),
         ),
         body: getBody(box, _listView),
         floatingActionButton: getFloatingActionButton(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: getBottomAppBar(context),
-        backgroundColor: Colors.black26,
+        backgroundColor: Theme.of(context).colorScheme.background,
         );
   }
 
@@ -46,6 +48,13 @@ class _AllNotesViewState extends State<AllNotesView> {
       _listView = !_listView;
     });
   }
+
+  void changeTheme()
+  {
+    widget.themeManager.toggleTheme();
+  }
+
+
 
 
   

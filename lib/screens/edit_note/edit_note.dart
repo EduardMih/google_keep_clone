@@ -97,9 +97,11 @@ class _EditNoteViewState extends State<EditNoteView> {
     if(widget.index != null)
     {
       box.deleteAt(widget.index!);
-      Navigator.push(
-      context, 
-      MaterialPageRoute(builder: (context) => const AllNotesView()));
+      //Navigator.push(
+      //context, 
+      //MaterialPageRoute(builder: (context) => const AllNotesView()));
+      Navigator.pop(context);
+      Navigator.pop(context);
     }
 
   }
