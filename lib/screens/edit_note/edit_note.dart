@@ -4,12 +4,15 @@ import 'package:google_keep_clone/screens/edit_note/components/app_bar.dart';
 import 'package:google_keep_clone/screens/edit_note/components/body.dart';
 import 'package:google_keep_clone/screens/edit_note/components/bottom_modal_menu_builder.dart';
 import 'package:google_keep_clone/screens/edit_note/components/bottom_navigation_bar.dart';
+import 'package:google_keep_clone/screens/edit_note/components/my_color_picker.dart';
 import 'package:hive/hive.dart';
 
 class EditNoteView extends StatefulWidget {
   final int? index;
   final Note? previousnote;
   Note? currentNote;
+  final List<Color> possibleCollors = List.of([Colors.transparent, Colors.red, Colors.orange, Colors.yellow, Colors.blue, Colors.green, Colors.pink,  Colors.black, Colors.white]);
+  Color chosenColor = Colors.transparent;
 
   EditNoteView({Key? key, this.index, this.previousnote}) : super(key: key);
 
@@ -29,8 +32,8 @@ class _EditNoteViewState extends State<EditNoteView> {
     
     return Scaffold(
       appBar: getAppBar(context),
-      body: BodyComponent(titleTextController: _titleTextController, contentTextController: _contentTextController),
-      bottomNavigationBar: getBottomNavigationBar(context, _getModifiedDateFormated(widget.previousnote), showBottomMenu),
+      body: BodyComponent(titleTextController: _titleTextController, contentTextController: _contentTextController, backgroundColor: widget.chosenColor),
+      bottomNavigationBar: getBottomNavigationBar(context, _getModifiedDateFormated(widget.previousnote), showBottomMenu, showBottomColorPicker),
       
     );
 
@@ -60,7 +63,7 @@ class _EditNoteViewState extends State<EditNoteView> {
         widget.currentNote = Note.fromInputData(
           _titleTextController.text, 
           _contentTextController.text, 
-         Colors.red.value);
+          widget.chosenColor.value);
 
          box.add(widget.currentNote);
 
@@ -75,6 +78,7 @@ class _EditNoteViewState extends State<EditNoteView> {
       widget.currentNote = widget.previousnote?.updateExistingNote(
         title: _titleTextController.text,
         content:  _contentTextController.text,
+        color: widget.chosenColor.value
       );
 
       widget.currentNote?.save();
@@ -91,6 +95,27 @@ class _EditNoteViewState extends State<EditNoteView> {
       context: context, 
       builder: (context) => getBottomModalMenu(context, deleteNote)
     );
+  }
+
+  void showBottomColorPicker()
+  {
+    showModalBottomSheet(
+      context: context, 
+      builder: (context) => MyColorPicker(
+        colors: widget.possibleCollors,
+        onSetColor: onSetColor,
+
+      )
+        
+      );
+  }
+
+  void onSetColor(int index)
+  {
+    setState(() {
+      widget.chosenColor = widget.possibleCollors[index];
+    });
+
   }
 
   void deleteNote()

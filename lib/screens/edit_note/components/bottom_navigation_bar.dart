@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-BottomAppBar getBottomNavigationBar(BuildContext context, String message, Function showBottomMenu)
+BottomAppBar getBottomNavigationBar(BuildContext context, String message, Function showBottomMenu, Function showColorPicker)
   {
     
     return BottomAppBar(
@@ -16,7 +16,7 @@ BottomAppBar getBottomNavigationBar(BuildContext context, String message, Functi
                   icon: const Icon(Icons.add_box_outlined)
                 ),
                 IconButton(
-                  onPressed: () => {}, 
+                  onPressed: () => showColorPicker(), 
                   icon: const Icon(Icons.palette_outlined)
                 )
             ]

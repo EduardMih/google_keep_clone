@@ -61,3 +61,4 @@ Widget getBottomModalMenu(BuildContext context, Function deleteNote)
 
 
   }
+  
